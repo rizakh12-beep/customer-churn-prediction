@@ -31,9 +31,15 @@ prediction-ready export produced by `python src/train_model.py`.
 5. Build the visuals as described below, then **take the screenshot** (see
    *Capturing the screenshot*).
 
-> **If the scaffold does not open cleanly** (hand-authored PBIP files can be
-> version-sensitive), use **Option B** — it takes about 10 minutes and gives an
-> identical result.
+> **Requires the PBIR + TMDL preview features** (Power BI Desktop → *File →
+> Options → Preview features* → enable *Store reports using enhanced metadata
+> format (PBIR)* and *Store semantic model using TMDL format*), then restart.
+> All JSON files in this scaffold are validated against Microsoft's official
+> Fabric schemas. If your Desktop build still refuses to open it (the TMDL model
+> or a theme reference can be build-specific, and it can't be tested without
+> Desktop), use **Option B** below — it takes ~10 minutes and gives an identical
+> result. Tip: after building via Option B, do **File → Save as → .pbip** to have
+> Power BI regenerate a guaranteed-valid project you can commit.
 
 ---
 
