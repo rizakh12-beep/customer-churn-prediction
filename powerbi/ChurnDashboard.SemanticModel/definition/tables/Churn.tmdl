@@ -1,0 +1,129 @@
+/// Scored customer table produced by src/train_model.py (data/powerbi_churn_ready.csv).
+/// Each row is a customer from the unseen testing set with the model's churn
+/// prediction and probability attached.
+table Churn
+
+	column Age
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Age
+
+	column Tenure
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Tenure
+
+	column 'Usage Frequency'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Usage Frequency
+
+	column 'Support Calls'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Support Calls
+
+	column 'Payment Delay'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Payment Delay
+
+	column 'Total Spend'
+		dataType: int64
+		summarizeBy: sum
+		sourceColumn: Total Spend
+
+	column 'Last Interaction'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Last Interaction
+
+	column Gender
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Gender
+
+	column 'Subscription Type'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Subscription Type
+
+	column 'Contract Length'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Contract Length
+
+	column Actual_Churn
+		dataType: int64
+		summarizeBy: sum
+		sourceColumn: Actual_Churn
+
+	column Predicted_Churn
+		dataType: int64
+		summarizeBy: sum
+		sourceColumn: Predicted_Churn
+
+	column Churn_Probability
+		dataType: double
+		summarizeBy: average
+		sourceColumn: Churn_Probability
+
+	column Risk_Band
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Risk_Band
+
+	measure 'Total Customers' = COUNTROWS('Churn')
+		formatString: #,0
+
+	measure 'Churned Customers' = SUM('Churn'[Actual_Churn])
+		formatString: #,0
+
+	measure 'Churn Rate' = DIVIDE([Churned Customers], [Total Customers])
+		formatString: 0.0%
+
+	measure 'Predicted Churn Rate' = DIVIDE(SUM('Churn'[Predicted_Churn]), [Total Customers])
+		formatString: 0.0%
+
+	measure 'Avg Churn Probability' = AVERAGE('Churn'[Churn_Probability])
+		formatString: 0.0%
+
+	measure 'Avg Tenure' = AVERAGE('Churn'[Tenure])
+		formatString: #,0.0
+
+	measure 'High Risk Customers' = CALCULATE([Total Customers], 'Churn'[Risk_Band] = "High")
+		formatString: #,0
+
+	partition Churn = m
+		mode: import
+		source =
+				let
+					// >>> EDIT THIS PATH to point at data/powerbi_churn_ready.csv on your machine <<<
+					Source = Csv.Document(
+						File.Contents("E:\py\Customer Churn\customer-churn-prediction\data\powerbi_churn_ready.csv"),
+						[Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
+					),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(
+						Promoted,
+						{
+							{"Age", Int64.Type},
+							{"Tenure", Int64.Type},
+							{"Usage Frequency", Int64.Type},
+							{"Support Calls", Int64.Type},
+							{"Payment Delay", Int64.Type},
+							{"Total Spend", Int64.Type},
+							{"Last Interaction", Int64.Type},
+							{"Gender", type text},
+							{"Subscription Type", type text},
+							{"Contract Length", type text},
+							{"Actual_Churn", Int64.Type},
+							{"Predicted_Churn", Int64.Type},
+							{"Churn_Probability", type number},
+							{"Risk_Band", type text}
+						}
+					)
+				in
+					Typed
+
+	annotation PBI_ResultType = Table
