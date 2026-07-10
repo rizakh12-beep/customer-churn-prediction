@@ -1,5 +1,13 @@
 # Customer Churn Prediction
 
+![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?logo=python&logoColor=white)
+![pandas](https://img.shields.io/badge/pandas-2.x-150458?logo=pandas&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-1.x-F7931E?logo=scikitlearn&logoColor=white)
+![matplotlib](https://img.shields.io/badge/matplotlib-3.x-11557C?logo=python&logoColor=white)
+![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-F2C811?logo=powerbi&logoColor=black)
+![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+
 Predict which subscription customers are likely to **churn** (cancel their
 service) using Python and machine learning, and surface the drivers of churn
 through EDA visualizations and a Power BI dashboard.
