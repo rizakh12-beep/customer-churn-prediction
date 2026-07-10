@@ -28,8 +28,12 @@ prediction-ready export produced by `python src/train_model.py`.
 4. The model already includes these **DAX measures** (in the `Churn` table):
    `Total Customers`, `Churned Customers`, `Churn Rate`, `Predicted Churn Rate`,
    `Avg Churn Probability`, `Avg Tenure`, `High Risk Customers`.
-5. Build the visuals as described below, then **take the screenshot** (see
-   *Capturing the screenshot*).
+5. The **"Churn Overview" page comes pre-built with 9 visuals** (4 KPI cards +
+   5 charts) — they render as soon as the data loads. Just format/tidy to taste,
+   then **take the screenshot** (see *Capturing the screenshot*).
+
+> Editing project files while Power BI Desktop is open? Changes are only picked
+> up after you **fully close and reopen** Power BI Desktop.
 
 > **Requires the PBIR + TMDL preview features** (Power BI Desktop → *File →
 > Options → Preview features* → enable *Store reports using enhanced metadata
