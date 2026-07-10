@@ -176,11 +176,11 @@ Build steps, DAX measures and the PBIP scaffold are in
 
 ![Power BI Dashboard](images/powerbi_dashboard.png)
 
-> The image above is the real Power BI screenshot once you add it as
-> `images/powerbi_dashboard.png`. Until then, here is the data-driven mockup of
-> the intended layout:
-
-![Dashboard mockup](images/powerbi_dashboard_mockup.png)
+> **Note:** the image above (`images/powerbi_dashboard.png`) is currently the
+> data-driven **mockup** of the intended layout. After you build the report in
+> Power BI Desktop (see the [guide](powerbi/POWERBI_GUIDE.md)), simply overwrite
+> `images/powerbi_dashboard.png` with your real screenshot — no README edits
+> needed.
 
 Dashboard includes: KPI cards (total customers, churn rate, high-risk customers,
 avg churn probability), churn by contract length, risk-band breakdown, churn by
